@@ -31,6 +31,7 @@ from Qt.QtWidgets import *
 from Qt.QtCore import Qt
 
 import numpy as np
+import warnings
 
 
 class MatplotlibWidget():
@@ -49,6 +50,8 @@ class MatplotlibWidget():
         parent.setLayout(self.grid_layout)
 
         self.callback_id = None
+
+        warnings.filterwarnings("ignore", "Attempting to set identical left == right.*", UserWarning)
 
     def _clean_axes(self):
         """
