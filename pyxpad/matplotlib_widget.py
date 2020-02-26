@@ -107,6 +107,8 @@ class MatplotlibWidget():
                             print(data.dim)
                             raise ValueError("Cannot plot '"+data.label+"' as it has too many dimensions")
                         time = data.dim[0].data
+                    if hasattr(time, "data"):
+                        time = time.data
 
                     self.axes.plot(time, data.data, label=label)
 
@@ -194,6 +196,8 @@ class MatplotlibWidget():
                             print(data.dim)
                             raise ValueError("Cannot plot '"+data.label+"' as it has too many dimensions")
                         time = data.dim[0].data
+                    if hasattr(time, "data"):
+                        time = time.data
 
                     self.axes.plot(time, data.data, label=label)
                 if tracenum == 0:
@@ -295,6 +299,8 @@ class MatplotlibWidget():
                         if len(data.dim) != 1:
                             raise ValueError("Cannot plot '"+data.name+"' as it has too many dimensions")
                         time = data.dim[0].data
+                    if hasattr(time, "data"):
+                        time = time.data
 
                     self.axes.plot(time, data.data, label=label)
 
@@ -433,6 +439,8 @@ class MatplotlibWidget():
                             print(data.dim)
                             raise ValueError("Cannot plot '"+data.label+"' as it has too many dimensions")
                         time = data.dim[0].data
+                    if hasattr(time, "data"):
+                        time = time.data
 
                     self.ax_top.plot(time, data.data, label=label)
                     self.ax_bottom.plot(time, data.data, label=label)
