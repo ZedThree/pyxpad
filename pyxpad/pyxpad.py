@@ -839,6 +839,9 @@ class PyXPad(QMainWindow, Ui_MainWindow):
     ##################### Plot menu actions #####################
 
     def handlePlot(self):
+        """
+        Create separate plots for each selected trace
+        """
         # Find which items are selected
         names = self.selectedDataNames()
         if len(names) == 0:
@@ -867,7 +870,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleOPlot(self):
         """
-        Creates an overlap plot of selected traces
+        Create a single plot for all selected traces
         """
 
         names = self.selectedDataNames()
@@ -893,7 +896,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleMPlot(self):
         """
-        Creates multiple subplots of multiple traces input by the user
+        Create a custom number of subplots of selected traces
         """
 
         names = self.selectedDataNames()
@@ -919,6 +922,9 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         self.tabWidget.setCurrentWidget(self.plotTab)
 
     def handleXYPlot(self):
+        """
+        Plot one trace against another
+        """
         names = self.selectedDataNames()
         if len(names) != 2:
             self.write("** Two data items must be selected for X-Y plotting")
@@ -929,7 +935,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleZPlot(self):
         """
-        Creates an zoomed plot of selected traces
+        Create a plot of selected traces with an interactive zoomed region
         """
 
         names = self.selectedDataNames()
@@ -954,6 +960,9 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         self.tabWidget.setCurrentWidget(self.plotTab)
 
     def handleClearFig(self):
+        """
+        Clear the current plot
+        """
         self.runCommand("clearFig()")
 
     def handleContour(self):
@@ -970,7 +979,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleContourf(self):
         """
-        Make a contour plot of a 2D trace
+        Create a contour plot of a 2D trace
         """
         names = self.selectedDataNames()
         if len(names) != 1:
@@ -1038,7 +1047,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleIntegrate(self):
         """
-        Integrates one or more traces
+        Integrate one or more traces
         """
         names = self.selectedDataNames()
 
@@ -1047,7 +1056,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleDifferentiate(self):
         """
-        Differentiates one or more traces
+        Differentiate one or more traces
         """
         names = self.selectedDataNames()
 
@@ -1056,7 +1065,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleAdd(self):
         """
-        Adds all selected traces together
+        Add all selected traces together
         """
         names = self.selectedDataNames()
         if len(names) < 2:
@@ -1067,7 +1076,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleMultiply(self):
         """
-        Adds all selected traces together
+        Multiply all selected traces together
         """
         names = self.selectedDataNames()
         if len(names) < 2:
@@ -1078,7 +1087,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleSubtract(self):
         """
-        Subtracts one trace from another
+        Subtract one trace from another
 
         """
         names = self.selectedDataNames()
@@ -1099,7 +1108,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleFFTP(self):
         """
-        Perform FFT, returning amplitude and phase
+        Fourier transform selected traces, returning amplitude and phase
 
         """
 
@@ -1111,7 +1120,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleRunFFT(self):
         """
-        Perform Running FFT
+        Running/boxcar Fourier transform with custom stride and width
         """
 
         names = self.selectedDataNames()
@@ -1137,7 +1146,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleReciprocal(self):
         """
-        Returns the reciprocal of one or more trace(s)
+        Reciprocal of selected traces (multiplicative inverse, x -> 1/x)
         """
         names = self.selectedDataNames()
 
@@ -1146,7 +1155,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleExponential(self):
         """
-        Returns the reciprocal of one or more trace(s)
+        Exponential of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1155,7 +1164,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleAbsolute(self):
         """
-        Returns the absolute value of one or more trace(s)
+        Absolute value of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1164,7 +1173,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleArctan(self):
         """
-        Returns the arctan of one or more trace(s)
+        Arctan (inverse tangent) of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1173,7 +1182,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleNlog(self):
         """
-        Returns the natural log of one or more trace(s)
+        Natural log of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1182,7 +1191,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleNorm(self):
         """
-        Normalises and returns one or more trace(s)
+        Normalise selected traces
         """
         names = self.selectedDataNames()
 
@@ -1191,7 +1200,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleInvert(self):
         """
-        Returns the inversion of one or more trace(s)
+        Invert selected traces (additive inverse, x -> -x)
         """
         names = self.selectedDataNames()
 
@@ -1200,7 +1209,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleAddCon(self):
         """
-        Adds a constant to and returns one or more trace(s)
+        Add a constant to selected traces
         """
         names = self.selectedDataNames()
 
@@ -1209,7 +1218,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleSubCon(self):
         """
-        Subtracts a constant from and returns one or more trace(s)
+        Subtract a constant from selected traces
         """
         names = self.selectedDataNames()
 
@@ -1218,7 +1227,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleMulCon(self):
         """
-        Multiplies by a constant and returns one or more trace(s)
+        Multiply selected traces by a constant
         """
         names = self.selectedDataNames()
 
@@ -1227,7 +1236,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleDivCon(self):
         """
-        Divides by a constant and returns one or more trace(s)
+        Divides selected traces by a constant
         """
         names = self.selectedDataNames()
 
@@ -1236,7 +1245,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handlePowCon(self):
         """
-        Raises to the power of a constant and returns one or more trace(s)
+        Raises selected traces to the power of a constant
         """
         names = self.selectedDataNames()
 
@@ -1245,7 +1254,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleChangeName(self):
         """
-        Changes the name of one or more trace(s)
+        Change the name of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1255,7 +1264,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleChangeUnit(self):
         """
-        Changes the units of one or more trace(s)
+        Change the units of selected traces
         """
         names = self.selectedDataNames()
 
@@ -1264,7 +1273,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleClip(self):
         """
-        Clips a signal, keeping only a specified value ranged
+        Clip selected traces, keeping only a specified value range
         """
 
         names = self.selectedDataNames()
@@ -1298,7 +1307,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleStats(self):
         """
-        Returns the statistics (mean, standard deviation and range) of one or more traces
+        Calculate statistics (mean, standard deviation and range) of selected traces
         """
 
         names = self.selectedDataNames()
@@ -1311,7 +1320,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
 
     def handleTimeOff(self):
         """
-        Adds a time offset to one or more traces
+        Add a time offset to selected traces
         """
 
         names = self.selectedDataNames()
@@ -1327,7 +1336,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         """
 
         about_box = QMessageBox()
-        about_box.setText(__doc__)
+        about_box.setText(__doc__.strip())
         about_box.exec_()
 
     ##########
