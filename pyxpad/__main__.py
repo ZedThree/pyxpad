@@ -6,6 +6,8 @@ from pyxpad import PyXPad
 from Qt.QtWidgets import QApplication
 import sys
 
+from ._version import __version__
+
 
 def main():
     """
@@ -21,6 +23,7 @@ def main():
                         default=None)
     parser.add_argument("-i", "--ignore-config", help="Ignore existing config files",
                         action="store_true", default=False)
+    parser.add_argument("-v", "--version", action="version", version="%(prog)s {}".format(__version__))
     args = parser.parse_args()
 
     loadfile = args.config[0] if args.config is not None else None
