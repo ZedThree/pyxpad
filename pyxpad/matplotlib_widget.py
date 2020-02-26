@@ -98,8 +98,7 @@ class MatplotlibWidget():
                     #self.axes.plot(data.time, data.data)
                     label = data.desc
                     if label == "":
-                        label = data.label
-                    label += " " + data.source
+                        label = data.name + " (" + data.units + ") " + data.source
 
                     time = data.time
                     if time is None:
