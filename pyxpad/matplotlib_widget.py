@@ -123,7 +123,12 @@ class MatplotlibWidget():
                 self.axes.set_ylabel(ylabel)
 
                 if plotnum == nplots:
-                    self.axes.set_xlabel(p[0].dim[p[0].order].label)
+                    x_dim = p[0].dim[p[0].order]
+                    xlabel = x_dim.label or x_dim.name
+                    if x_dim.units:
+                        xlabel = "{} ({})".format(xlabel, x_dim.units)
+
+                    self.axes.set_xlabel(xlabel)
 
                 self.axes.legend(loc=loc)
             except TypeError:
@@ -209,7 +214,13 @@ class MatplotlibWidget():
                         if data.units != "":
                             ylabel += " ("+data.units+") "
                     self.axes.set_ylabel(ylabel)
-                    self.axes.set_xlabel(trace[0].dim[trace[0].order].label)
+                    x_dim = data.dim[data.order]
+                    xlabel = x_dim.label or x_dim.name
+                    if x_dim.units:
+                        xlabel = "{} ({})".format(xlabel, x_dim.units)
+
+                    self.axes.set_xlabel(xlabel)
+
                 self.axes.legend(loc=loc)
             except TypeError:
                 #Trace not iterable
@@ -450,7 +461,13 @@ class MatplotlibWidget():
                     self.ax_top.plot(time, data.data, label=label)
                     self.ax_bottom.plot(time, data.data, label=label)
                 if tracenum == 0:
-                    self.ax_bottom.set_xlabel(trace[0].dim[trace[0].order].label)
+                    x_dim = trace[0].dim[trace[0].order]
+                    xlabel = x_dim.label or x_dim.name
+                    if x_dim.units:
+                        xlabel = "{} ({})".format(xlabel, x_dim.units)
+
+                    self.ax_bottom.set_xlabel(xlabel)
+
                     ylabel = data.desc
                     if ylabel == "":
                         ylabel = data.label
