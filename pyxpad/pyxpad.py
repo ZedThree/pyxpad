@@ -790,8 +790,6 @@ class PyXPad(QMainWindow, Ui_MainWindow):
             name = self.dataTable.item(row, 0).text()
             self.data[name].comment = comment
 
-        print(row, col)
-
     def commandEntered(self, text=None):
         """
         Called when a command is entered on the Data tab.
