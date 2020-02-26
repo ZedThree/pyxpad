@@ -1026,8 +1026,12 @@ class PyXPad(QMainWindow, Ui_MainWindow):
             # Get current time range from first variable
             var = self.data[names[0]]
             if var.time is not None:
-                tmin = var.time[0]
-                tmax = var.time[-1]
+                if hasattr(var.time, "data"):
+                    tmin = var.time.data[0]
+                    tmax = var.time.data[-1]
+                else:
+                    tmin = var.time[0]
+                    tmax = var.time[-1]
             else:
                 tmin = var.dim[0].data[0]
                 tmax = var.dim[0].data[-1]
