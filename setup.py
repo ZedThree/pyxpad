@@ -1,6 +1,10 @@
 from setuptools import setup
 
-version='0.5.0'
+version_dict = {}
+with open("pyxpad/_version.py", "r") as f:
+    exec(f.read(), version_dict)
+
+version = version_dict["__version__"]
 
 setup(name='pyxpad',
       version=version,
