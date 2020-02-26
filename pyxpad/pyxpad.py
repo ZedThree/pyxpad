@@ -371,6 +371,14 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         super().__init__(parent)
         self.setupUi(self)
 
+        try:
+            self.menuAdd_source.setToolTipsVisible(True)
+            self.menuFile.setToolTipsVisible(True)
+            self.menuPlot.setToolTipsVisible(True)
+            self.menuCommand.setToolTipsVisible(True)
+        except AttributeError:
+            pass
+
         self.sources = Sources(self)  # Handles data sources
         self.data = OrderedDict()  # User data
 
