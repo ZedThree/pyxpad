@@ -112,6 +112,8 @@ class MatplotlibWidget():
 
                     self.axes.plot(time, data.data, label=label)
 
+                    loc = "upper right" if len(time) > 10000 else "best"
+
                 # Y label from last plot
                 ylabel = data.desc
                 if ylabel == "":
@@ -123,7 +125,8 @@ class MatplotlibWidget():
                 if plotnum == nplots:
                     self.axes.set_xlabel(p[0].dim[p[0].order].label)
                     setp(self.axes.get_xticklabels(), visible=True)
-                self.axes.legend()
+
+                self.axes.legend(loc=loc)
             except TypeError:
                 # p not iterable, so just plot item
                 #self.axes.plot(p.time, p.data)
@@ -198,6 +201,7 @@ class MatplotlibWidget():
                         time = data.dim[0].data
                     if hasattr(time, "data"):
                         time = time.data
+                    loc = "upper right" if len(time) > 10000 else "best"
 
                     self.axes.plot(time, data.data, label=label)
                 if tracenum == 0:
@@ -208,7 +212,7 @@ class MatplotlibWidget():
                             ylabel += " ("+data.units+") "
                     self.axes.set_ylabel(ylabel)
                     self.axes.set_xlabel(trace[0].dim[trace[0].order].label)
-                self.axes.legend()
+                self.axes.legend(loc=loc)
             except TypeError:
                 #Trace not iterable
                 time = trace.time.data
@@ -303,6 +307,7 @@ class MatplotlibWidget():
                         time = time.data
 
                     self.axes.plot(time, data.data, label=label)
+                    loc = "upper right" if len(time) > 10000 else "best"
 
                 # Y label from last plot
                 ylabel = data.desc
@@ -315,7 +320,7 @@ class MatplotlibWidget():
                 if plotnum == 0:
                     self.axes.set_xlabel(traces[0][0].dim[traces[0][0].order].label)
 
-                self.axes.legend()
+                self.axes.legend(loc=loc)
 
             except TypeError:
                 # Traces[plotnum] not iterable
@@ -442,6 +447,8 @@ class MatplotlibWidget():
                     if hasattr(time, "data"):
                         time = time.data
 
+                    loc = "upper right" if len(time) > 10000 else "best"
+
                     self.ax_top.plot(time, data.data, label=label)
                     self.ax_bottom.plot(time, data.data, label=label)
                 if tracenum == 0:
@@ -453,7 +460,7 @@ class MatplotlibWidget():
                             ylabel += " ("+data.units+") "
                     self.ax_bottom.set_ylabel(ylabel)
                     self.ax_top.set_ylabel(ylabel)
-                self.ax_bottom.legend()
+                self.ax_bottom.legend(loc=loc)
             except TypeError:
                 # Trace not iterable
                 time = trace.time.data
