@@ -805,7 +805,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         def trace(name):
             try:
                 return self.data[name].name
-            except:
+            except AttributeError:
                 return ""
         namelist = [(name, trace(name)) for name in names]
         values = set(map(lambda x: x[1], namelist))
@@ -835,7 +835,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         def trace(name):
             try:
                 return self.data[name].name
-            except:
+            except AttributeError:
                 return ""
         namelist = [(name, trace(name)) for name in names]
         values = set(map(lambda x: x[1], namelist))
@@ -861,7 +861,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         def trace(name):
             try:
                 return self.data[name].name
-            except:
+            except AttributeError:
                 return ""
 
         namelist = [(name, trace(name)) for name in names]
@@ -897,7 +897,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         def trace(name):
             try:
                 return self.data[name].name
-            except:
+            except AttributeError:
                 return ""
         namelist = [(name, trace(name)) for name in names]
         values = set(map(lambda x: x[1], namelist))
@@ -979,7 +979,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
             else:
                 tmin = var.dim[0].data[0]
                 tmax = var.dim[0].data[-1]
-        except:
+        except AttributeError:
             return
 
         # Use a dialog box to get time range
@@ -1239,7 +1239,7 @@ class PyXPad(QMainWindow, Ui_MainWindow):
                     valmin = point
                 if point > valmax:
                     valmax = point
-        except:
+        except AttributeError:
             return
 
         # Use a dialog box to get value range
