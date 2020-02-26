@@ -986,7 +986,8 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         config = OrderedDict({"min": float(tmin), "max": float(tmax)})
 
         c = ConfigDialog(config, self)
-        c.exec_()
+        if c.exec_() == c.Rejected:
+            return
 
         for n in names:
             self.runCommand(self.makeUnique(n+"_chop") + " = " +
@@ -1082,7 +1083,8 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         config = OrderedDict({"stride": float(width), "width": float(stride)})
 
         c = ConfigDialog(config, self)
-        c.exec_()
+        if c.exec_() == c.Rejected:
+            return
 
         for name in names:
             # Create a unique name
@@ -1244,7 +1246,8 @@ class PyXPad(QMainWindow, Ui_MainWindow):
         config = OrderedDict({"min": float(valmin), "max": float(valmax)})
 
         c = ConfigDialog(config, self, pstvOnly=False)
-        c.exec_()
+        if c.exec_() == c.Rejected:
+            return
 
         for n in names:
             self.runCommand(self.makeUnique(n+"_clip") + " = " +
