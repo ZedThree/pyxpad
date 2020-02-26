@@ -94,8 +94,6 @@ class MatplotlibWidget():
             try:
                 # Assume each p is a list of data items to be overplotted
                 for data in p:
-                    # Plot data
-                    #self.axes.plot(data.time, data.data)
                     label = data.desc
                     if label == "":
                         label = data.name + " (" + data.units + ") " + data.source
@@ -127,7 +125,6 @@ class MatplotlibWidget():
                 self.axes.legend(loc=loc)
             except TypeError:
                 # p not iterable, so just plot item
-                #self.axes.plot(p.time, p.data)
                 time = p.time.data
                 xlabel = p.dim[p.order].label
                 if time is None:
