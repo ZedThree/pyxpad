@@ -516,7 +516,10 @@ class MatplotlibWidget():
         """
         Callback for ending the zoomed region
         """
-        self.figure.canvas.mpl_disconnect(self.drag_cid)
+        try:
+            self.figure.canvas.mpl_disconnect(self.drag_cid)
+        except AttributeError:
+            pass
 
     def contour(self, item, levels=10):
         """
