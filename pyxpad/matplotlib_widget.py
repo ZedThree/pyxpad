@@ -90,7 +90,7 @@ class MatplotlibWidget():
                 ax = self.axes
             else:
                 self.axes = self.figure.add_subplot(nplots, 1, plotnum, sharex=ax)
-            setp(self.axes.get_xticklabels(), visible=False)
+
             try:
                 # Assume each p is a list of data items to be overplotted
                 for data in p:
@@ -124,7 +124,6 @@ class MatplotlibWidget():
 
                 if plotnum == nplots:
                     self.axes.set_xlabel(p[0].dim[p[0].order].label)
-                    setp(self.axes.get_xticklabels(), visible=True)
 
                 self.axes.legend(loc=loc)
             except TypeError:
@@ -158,7 +157,7 @@ class MatplotlibWidget():
                 if plotnum == 0:
                     self.axes.set_xlabel(xlabel)
 
-        self.figure.subplots_adjust(left=0.08, right=0.98, top=0.95, bottom=0.07, hspace=0.001)
+        self.figure.subplots_adjust(hspace=0.001)
 
         self.canvas.draw()
 
@@ -492,7 +491,7 @@ class MatplotlibWidget():
                 self.ax_top.set_ylabel(ylabel)
                 self.ax_bottom.set_ylabel(ylabel)
 
-        self.figure.subplots_adjust(left=0.07, right=0.98, top=0.95, bottom=0.08)
+        self.figure.subplots_adjust(left=0.07, right=0.98, top=0.95, bottom=0.1)
         self.canvas.draw()
 
     def start_zoom_region(self, event):
